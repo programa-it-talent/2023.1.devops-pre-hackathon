@@ -34,10 +34,10 @@ jobs:
         with:
           args: >
             -Dsonar.organization=ligtonribeiro
-            -Dsonar.projectKey=ligtonribeiro_express-api-example
+            -Dsonar.projectKey=ligtonribeiro_pre-hackathon-devops
             -Dorganization-key=ligtonribeiro
             -Dsonar.sources=src
-            -Dsonar.language=js,ts
+            -Dsonar.language=js,jsx,ts,tsx
             -Dsonar.javascript.file.suffixes=.js
             -Dsonar.typescript.file.suffixes=.ts
             -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
