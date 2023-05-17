@@ -9,6 +9,9 @@ function App() {
         <p>
           DevOps Básico IT Talent - Mudanças aula 26-04-2023
         </p>
+        <p>
+          Squad 1
+        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
