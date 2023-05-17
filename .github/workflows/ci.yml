@@ -1,0 +1,44 @@
+name: "Testes"
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Instalação Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Instalação das dependências
+        run: npm install
+
+      - name: Executando Testes
+        run: npm run test
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=ligtonribeiro
+            -Dsonar.projectKey=ligtonribeiro_express-api-example
+            -Dorganization-key=ligtonribeiro
+            -Dsonar.sources=src
+            -Dsonar.language=js,ts
+            -Dsonar.javascript.file.suffixes=.js
+            -Dsonar.typescript.file.suffixes=.ts
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+            -Dsonar.sourceEncoding=UTF-8
